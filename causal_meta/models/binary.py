@@ -17,7 +17,6 @@ class BinaryStructuralModel(nn.Module):
         return self.online_loglikelihood(self.model_A_B(inputs), self.model_B_A(inputs))
 
     def online_loglikelihood(self, logl_A_B, logl_B_A):
-        n = logl_A_B.size(0)
         log_alpha, log_1_m_alpha = F.logsigmoid(self.z), F.logsigmoid(-self.z)
 
         return logsumexp(
